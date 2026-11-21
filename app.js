@@ -192,17 +192,19 @@ $("#btn-run").addEventListener("click", async () => {
 $("#btn-nl").addEventListener("click", async () => {
   const q = $("#nl").value.trim();
   if (!q) return;
-  const b = $("#btn-nl"); b.disabled = true; b.textContent = "AI가 SQL을 쓰는 중…";
+  const provider = $("#ai").value;
+  const name = $("#ai").selectedOptions[0].textContent;
+  const b = $("#btn-nl"); b.disabled = true; b.textContent = `${name}가 SQL을 쓰는 중…`;
   let r;
   try {
     const res = await fetch("api/sql", { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: q, schema: S.schema }) });
+      body: JSON.stringify({ question: q, schema: S.schema, provider }) });
     r = res.ok ? await res.json() : { sql: null, reason: `서버 함수가 없습니다 (${res.status}) — 배포하면 생깁니다` };
   } catch (e) { r = { sql: null, reason: "서버 함수에 닿지 못했습니다" }; }
   $("#nl-msg").hidden = false;
   if (r.sql) {
     $("#sql").value = r.sql;
-    $("#nl-msg").textContent = `AI가 쓴 SQL입니다 — ${r.why || ""} · 실행 전에 읽어 보고, 결과 하나는 손으로 검산하십시오.`;
+    $("#nl-msg").textContent = `${r.model || name}가 쓴 SQL입니다 — ${r.why || ""} · 실행 전에 읽어 보고, 결과 하나는 손으로 검산하십시오.`;
   } else {
     $("#nl-msg").textContent = `SQL을 만들지 못했습니다 — ${r.reason}. 아래 SQL을 직접 고쳐서 실행할 수 있습니다.`;
   }

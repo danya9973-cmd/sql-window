@@ -32,6 +32,8 @@ textarea { width: 100%; font: inherit; font-size: 15px; padding: 12px; border: 1
   border-radius: 10px; resize: vertical; background: #fff; color: var(--ink); }
 textarea:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
 .row { display: flex; gap: 8px; margin: 10px 0 4px; }
+.row select { font: inherit; font-weight: 700; font-size: 14px; padding: 0 10px; border: 1px solid var(--line);
+  border-radius: 10px; background: #fff; color: var(--ink); }
 button.primary, button.ghost { flex: 1; font: inherit; font-weight: 700; font-size: 14px;
   padding: 11px 12px; border-radius: 10px; cursor: pointer; }
 button.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
