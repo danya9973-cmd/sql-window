@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__edata9-data__list_tables",
+      "mcp__edata9-data__describe_table",
+      "mcp__edata9-data__query"
+    ],
+    "defaultMode": "default"
+  }
+}
